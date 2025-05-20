@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
 import { getPopularMovies } from '../services/MovieServices';
-import type { Movie } from '../types/Movie';
-
+import { useQuery } from "@tanstack/react-query";
 
 export const useMovies = () => {
-    const [movies, setMovies] = useState<Movie[]>([]);
-    const [loading, setloading] = useState(true);
+    const moviesQuery = useQuery({
+        queryKey: ["movies"],
+        queryFn: getPopularMovies,
+        staleTime: 1000 * 60
+    })
 
-    useEffect(() => {
-        getPopularMovies().then((data) => {
-            setMovies(data);
-            setloading(false);
-        });
-    }, []);
-    return{movies, loading} ;
+    return {
+        moviesQuery,
+    };
 };
