@@ -3,13 +3,17 @@ import { useMovies } from '../hooks/useMovies';
 import MovieList from '../components/MovieList';
 
 const MoviesPage: React.FC = () => {
-    const{ movies, loading } = useMovies();
+    const{ moviesQuery } = useMovies();
 
-    if ( loading ) return <p>Cargando peliculas...</p>
+    if ( moviesQuery.isLoading ) return (
+        <div style={{display: "flex", justifyContent: "center", marginTop: 24}}>
+            <p>Cargando peliculas...</p>
+        </div>
+    )
     return(
         <div>
             <h2 style={{textAlign:'center'}}>Peliculas Populares</h2>
-            <MovieList movies={movies}/>
+            <MovieList movies={moviesQuery.data}/>
         </div>
     );
 };

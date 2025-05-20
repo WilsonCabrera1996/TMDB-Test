@@ -1,25 +1,23 @@
-import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import type { Movie } from '../types/Movie';
+import { useMovie } from '../hooks/useMovie';
 
 const MovieDetails: React.FC = () => {
   const { id } = useParams();
-  const [movie, setMovie] = useState<Movie | null>(null);
+  const { movieQuery } = useMovie(id ? id : "")
 
-  useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=<<YOUR_API_KEY>>&language=es-ES`)
-      .then(res => res.json())
-      .then(data => setMovie(data));
-  }, [id]);
-
-  if (!movie) return <p>Cargando detalles...</p>;
-
+  if (movieQuery.isLoading || !movieQuery.data) return (
+    <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
+      <p>Cargando peliculas...</p>
+    </div>
+  )
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>{movie.title}</h2>
-      <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-      <p>{movie.overview}</p>
-      <p><strong>Fecha de lanzamiento:</strong> {movie.release_date}</p>
+    <div style={{ padding: '2rem', display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+      <h2>{movieQuery.data.title}</h2>
+      <div style={{ display: "flex", gap: 32, paddingRight: 24, paddingLeft: 24, alignItems: "center", marginBottom: 12 }}>
+        <img src={`https://image.tmdb.org/t/p/w500${movieQuery.data.poster_path}`} alt={movieQuery.data.title} width={350} />
+        <p style={{ width: "60ch" }}>{movieQuery.data.overview}</p>
+      </div>
+      <p><strong>Fecha de lanzamiento:</strong> {movieQuery.data.release_date}</p>
     </div>
   );
 };
