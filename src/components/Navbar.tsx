@@ -1,15 +1,12 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Navbar = ()=> {
-
-    return(
-
-        <nav style={{display:'flex', justifyContent: 'space-between', padding:'1rem', background:'#222', color:'#fff'}}>
-
-            <div>
-                <Link to="/" style={{marginRight:'1rem',color:'#fff'}}>Inicio</Link>
-                <Link to="/movies" style={{marginRight:'1rem', color: '#fff'}}>Peliculas</Link>
-                <Link to="/favorites" style={{color:'#fff'}}>Favoritas</Link>
+const Navbar = () => {
+    return (
+        <nav style={{ padding: '1rem', background: '#222' }}>
+            <div style={{ justifyContent: "center", gap: 12, display: "flex" }}>
+                <Link to="/" style={{ color: '#fff', userSelect: "none" }}>Inicio</Link>
+                <Link to="/movies" style={{ color: '#fff', userSelect: "none" }}>Películas</Link>
+                <Link to="/favorites" style={{ color: '#fff', userSelect: "none" }}>Favoritas</Link>
             </div>
         </nav>
     );
