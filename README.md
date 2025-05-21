@@ -14,17 +14,17 @@ npm run dev
 
 ### If you are gonna use a different package manager instead of `npm`, just delete the package-lock.json and run the correct command:
 
-Using pnpm:
+· Using pnpm:
 ```bash
 pnpm install
 ```
 
-Using yarn:
+· Using yarn:
 ```bash
 yarn install
 ```
 
-Using bun:
+· Using bun:
 ```bash
 bun install
 ```
