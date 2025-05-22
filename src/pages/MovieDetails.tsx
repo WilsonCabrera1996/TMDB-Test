@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMovie } from '../hooks/useMovie';
+import { ArrowLeft04Icon } from 'hugeicons-react';
 
 const MovieDetails: React.FC = () => {
   const { id } = useParams();
@@ -24,7 +25,7 @@ const MovieDetails: React.FC = () => {
 
   return (
     <div style={{ padding: '2rem', display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", position: "relative" }}>
-      <button style={{ position: "absolute", top: 24, left: 110 }} onClick={() => navigation(-1)}>{"<-"}</button>
+      <ArrowLeft04Icon style={{ position: "absolute", left: 56, top: 56, padding: 8, borderRadius: 8, cursor: "pointer" }} className='go-back-btn' onClick={() => navigation(-1)} />
       <div style={{ display: "flex", alignItems: "center", marginBottom: 36 }}>
         {
           isSameTitle ?
@@ -45,7 +46,7 @@ const MovieDetails: React.FC = () => {
         <p style={{ width: "60ch" }}>{movieQuery.data.overview ? movieQuery.data.overview : "Esta película no tiene descripción"}</p>
       </div>
       <p><strong>Fecha de lanzamiento:</strong> {movieQuery.data.release_date.toString()}</p>
-      <p style={{color: colorVoteAverage(movieQuery.data.vote_average)}}>{movieQuery.data.vote_average.toString().slice(0, 4)}</p>
+      <p style={{ color: colorVoteAverage(movieQuery.data.vote_average) }}>{movieQuery.data.vote_average.toString().slice(0, 4)}</p>
     </div>
   );
 };

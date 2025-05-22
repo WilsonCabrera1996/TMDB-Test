@@ -6,13 +6,13 @@ const Home = () => {
             <div className="welcome-text">
                 <h1>Bienvenido a Cine APP</h1>
             </div>
-            
-            <p>Explora peliculas populares,descubre tus favoritas y mas.</p>
+
+            <p>Explora peliculas populares, descubre tus favoritas y mas.</p>
 
             <div>
-            <Link to="/movies">
-                 <button>Explorar</button>
-             </Link>
+                <Link to="/movies">
+                    <button>Explorar</button>
+                </Link>
             </div>
         </div>
     );

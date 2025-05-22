@@ -13,7 +13,7 @@ export const useMovies = () => {
     })
 
     const getNextPage = () => {
-        if (moviesQuery.data?.results.length === 0) return 
+        if (moviesQuery.data?.results.length === 0) return
         setPage(page + 1)
     }
 
