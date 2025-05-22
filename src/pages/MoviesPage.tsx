@@ -16,7 +16,7 @@ const MoviesPage: React.FC = () => {
             <MovieList movies={moviesQuery.data.results} />
             <div style={{ display: "flex", gap: 16, paddingTop: 36 }}>
                 <button style={{ width: 150 }} onClick={getPrevPage} disabled={moviesQuery.isFetching}>Anterior</button>
-                <button style={{ width: 150 }} onClick={getNextPage} disabled={moviesQuery.isFetching}>Sigueinte</button>
+                <button style={{ width: 150 }} onClick={getNextPage} disabled={moviesQuery.isFetching}>Siguiente</button>
             </div>
         </div>
     );
