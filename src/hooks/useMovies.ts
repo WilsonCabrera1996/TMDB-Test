@@ -1,19 +1,25 @@
 import { useState } from 'react';
-import { getPopularMovies } from '../services/MovieServices';
+import { getPopularMovies, getTopRatedMovies } from '../services/MovieServices';
 import { useQuery } from "@tanstack/react-query";
 
 export const useMovies = () => {
 
     const [page, setPage] = useState(1)
 
-    const moviesQuery = useQuery({
-        queryKey: ["movies", page],
+    const topRatedMoviesQuery = useQuery({
+        queryKey: ["movies", "top_rated"],
+        queryFn: () => getTopRatedMovies({}),
+        staleTime: 1000 * 60,
+    })
+
+    const popularMoviesQuery = useQuery({
+        queryKey: ["movies", "popular", page],
         queryFn: () => getPopularMovies({ pageParam: page }),
         staleTime: 1000 * 60,
     })
 
     const getNextPage = () => {
-        if (moviesQuery.data?.results.length === 0) return
+        if (popularMoviesQuery.data?.results.length === 0) return
         setPage(page + 1)
     }
 
@@ -23,7 +29,8 @@ export const useMovies = () => {
     }
 
     return {
-        moviesQuery,
+        popularMoviesQuery,
+        topRatedMoviesQuery,
         getNextPage,
         getPrevPage,
     };

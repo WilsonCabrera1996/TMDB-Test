@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMovie } from '../hooks/useMovie';
 import { ArrowLeft04Icon } from 'hugeicons-react';
+import { LoadingIndicator } from '../components/LoadingIndicator';
 
 const MovieDetails: React.FC = () => {
   const { id } = useParams();
@@ -9,8 +10,8 @@ const MovieDetails: React.FC = () => {
   const isSameTitle = movieQuery.data?.title === movieQuery.data?.original_title
 
   const colorVoteAverage = (avg: number) => {
-    if (avg > 8.5) return "green"
-    if (avg < 8.5 && avg > 6.5) {
+    if (avg >= 8) return "green"
+    if (avg < 8 && avg >= 6.5) {
       return "yellow"
     } else {
       return "red"
@@ -18,9 +19,7 @@ const MovieDetails: React.FC = () => {
   }
 
   if (movieQuery.isLoading || !movieQuery.data) return (
-    <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
-      <p>Cargando peliculas...</p>
-    </div>
+    <LoadingIndicator />
   )
 
   return (

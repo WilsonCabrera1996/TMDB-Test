@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 
 interface Props {
     movie: Movie;
+    showDate?: boolean
 }
 
-const MovieCard: React.FC<Props> = ({ movie }) => {
+const MovieCard: React.FC<Props> = ({ movie, showDate = true }) => {
     return (
         <Link to={`/movies/${movie.id}`} style={{ color: "white", margin: 8 }}>
             <div style={{ width: '180px', margin: '1rem' }} className='card'>
@@ -19,7 +20,7 @@ const MovieCard: React.FC<Props> = ({ movie }) => {
                     />
                 </div>
                 <h3>{movie.title}</h3>
-                <p><small>{movie.release_date.toString()}</small></p>
+                {showDate && <p><small>{movie.release_date.toString()}</small></p>}
             </div>
         </Link>
     );
