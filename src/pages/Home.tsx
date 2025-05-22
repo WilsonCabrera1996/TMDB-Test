@@ -1,10 +1,19 @@
-
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
-        <div style={{ textAlign: 'center', marginTop: '2rem', flex: 1, minWidth: "100%" }}>
-            <h1>Bienvenido a Cine APP</h1>
+        <div className="hero-background">
+            <div className="welcome-text">
+                <h1>Bienvenido a Cine APP</h1>
+            </div>
+            
             <p>Explora peliculas populares,descubre tus favoritas y mas.</p>
+
+            <div>
+            <Link to="/movies">
+                 <button>Explorar</button>
+             </Link>
+            </div>
         </div>
     );
 };
